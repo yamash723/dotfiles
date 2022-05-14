@@ -22,6 +22,11 @@ if status is-interactive
     abbr -a chz-add "chezmoi add"
     abbr -a chz-apply "chezmoi apply"
 
+    # k8s
+    abbr -a k "kubectl"
+    abbr -a kg "kubectl get"
+    abbr -a kd "kubectl describe"
+
     # alias
     alias ls='exa --icons --git'
     alias ll='exa -aahl --icons --git'
