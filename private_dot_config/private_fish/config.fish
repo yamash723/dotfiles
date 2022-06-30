@@ -42,4 +42,4 @@ end
 
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-ource /opt/homebrew/opt/asdf/asdf.fish
+source /opt/homebrew/opt/asdf/asdf.fish
