@@ -10,9 +10,15 @@ if status is-interactive
     abbr -a g-open "code (ghq root)/(ghq list | peco)"
     abbr -a g-root "cd (ghq root)"
     abbr -a g-browse "gh browse"
-    abbr -a g-s "git status"
-    abbr -a g-pull "git pull"
-    abbr -a g-push "git push"
+
+    abbr -a ga "git add"
+    abbr -a gs "git status"
+    abbr -a gpull "git pull"
+    abbr -a gpush "git push"
+    abbr -a gsw "git switch"
+    abbr -a gres "git restore"
+    abbr -a gc "git commit"
+    abbr -a gnew "git switch -c"
 
     # chezmoi
     abbr -a chz "chezmoi"
