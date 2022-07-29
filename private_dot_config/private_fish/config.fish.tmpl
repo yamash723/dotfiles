@@ -87,9 +87,11 @@ function fish_user_key_bindings
 end
 
 function chezmoi_push
-  chezmoi git add .
-  chezmoi git commit -c "update"
-  chezmoi git push
+  chezmoi cd
+  git add .
+  git commit -m "update"
+  git pull
+  git push
 end
 
 
