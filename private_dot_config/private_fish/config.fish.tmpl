@@ -1,0 +1,123 @@
+
+if status is-interactive
+end
+
+# -----------------------------------------------------------------------------
+# alias
+# -----------------------------------------------------------------------------
+
+alias ls='exa --icons --git'
+alias ll='exa -aahl --icons --git'
+
+{{ if eq .chezmoi.os "linux" }}
+  alias cat='batcat -pp'
+  alias less='batcat'
+{{ else }}
+  alias cat='bat -pp'
+  alias less='bat'
+{{ end }}
+
+# -----------------------------------------------------------------------------
+# abbreviations
+# -----------------------------------------------------------------------------
+
+## GitHub
+abbr -a gh "cd (ghq root)/(ghq list | peco)"
+abbr -a ghg "ghq get"
+abbr -a ghget "ghg"
+abbr -a gho "code (ghq root)/(ghq list | peco)"
+abbr -a ghopen "gho"
+abbr -a ghr "cd (ghq root)"
+abbr -a ghroot "ghr"
+abbr -a ghb "gh browse"
+abbr -a ghbrowse "ghb"
+
+## Git
+abbr -a ga "git add"
+abbr -a gs "git status"
+abbr -a gc "git commit -m"
+abbr -a gb "git branch -a --sort=-authordate | grep -v -e '->' -e '*' | perl -pe 's/^\h+//g' | perl -pe 's#^remotes/origin/##' | perl -nle 'print if !$c{$_}++' | peco | xargs git switch"
+abbr -a gn "git switch -c '"
+abbr -a gd "git diff"
+abbr -a gf "git fetch"
+abbr -a gpull "git pull"
+abbr -a gpush "git push"
+
+## chezmoi
+abbr -a ch "chezmoi"
+abbr -a chc "chezmoi cd"
+abbr -a cho "code (chezmoi source-path)"
+abbr -a chr "chezmoi re-add"
+abbr -a cha "chezmoi add"
+abbr -a chap "chezmoi apply"
+abbr -a chp "chezmoi_push"
+abbr -a chfish "chezmoi edit ~/.config/fish/config.fish && chezmoi apply ~/.config/fish/config.fish && source ~/.config/fish/config.fish"
+
+## asdf
+abbr -a ad "asdf"
+abbr -a adi "asdf install"
+abbr -a adl "asdf list"
+abbr -a adla "asdf list-all"
+abbr -a adg "asdf global"
+
+## k8s
+abbr -a k "kubectl"
+abbr -a kg "kubectl get"
+abbr -a kgp "kubectl get pods"
+abbr -a kd "kubectl describe"
+abbr -a kdp "kubectl describe pod"
+
+## docker
+abbr -a dc "docker-compose"
+abbr -a dcu "docker-compose up"
+
+# terraform
+abbr -a tf "terraform"
+
+## dev
+abbr -a dev-lapras "code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/github.com/lapras-inc/lapras"
+abbr -a dev-scouty "code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/github.com/lapras-inc/scouty"
+
+# -----------------------------------------------------------------------------
+# Function
+# -----------------------------------------------------------------------------
+
+function fish_user_key_bindings
+  bind \cr peco_select_history # Bind for peco history to Ctrl+r
+end
+
+function chezmoi_push
+  chezmoi git add .
+  chezmoi git commit -c "update"
+  chezmoi git push
+end
+
+
+# -----------------------------------------------------------------------------
+# Other
+# -----------------------------------------------------------------------------
+
+## brew
+set -g -x PATH $PATH /opt/homebrew/bin
+
+## fish
+set fish_theme agnoster
+set fish_plugins theme peco
+
+## iterm
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+## asdf
+{{ if eq .chezmoi.os "darwin" }}
+  source /opt/homebrew/opt/asdf/asdf.fish
+{{ else }}
+  source ~/.asdf/asdf.fish
+{{ end }}
+
+## direnv
+eval (direnv hook fish)
+
+# Buisiness
+{{ if eq .chezmoi.hostname "nappa-work2" }}
+  source ~/.kube/kube-config/clustername-ps1/clustername-ps1.fish
+{{ end }}
