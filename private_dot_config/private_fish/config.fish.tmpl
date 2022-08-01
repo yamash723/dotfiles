@@ -6,13 +6,14 @@ end
 # alias
 # -----------------------------------------------------------------------------
 
-alias ls='exa --icons --git'
-alias ll='exa -aahl --icons --git'
-
 {{ if eq .chezmoi.os "linux" }}
+  alias ll='exa -aahl --icons'
+  alias ls='exa --icons'
   alias cat='batcat -pp'
   alias less='batcat'
 {{ else }}
+  alias ll='exa -aahl --icons --git'
+  alias ls='exa --icons --git'
   alias cat='bat -pp'
   alias less='bat'
 {{ end }}
