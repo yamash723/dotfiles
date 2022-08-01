@@ -123,6 +123,6 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 eval (direnv hook fish)
 
 # Buisiness
-{{ if eq .chezmoi.hostname "nappa-work2" }}
+{{ if eq .chezmoi.hostname "nappa-work" }}
   source ~/.kube/kube-config/clustername-ps1/clustername-ps1.fish
 {{ end }}
