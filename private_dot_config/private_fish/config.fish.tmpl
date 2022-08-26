@@ -73,6 +73,7 @@ abbr -a kd "kubectl describe"
 abbr -a kdp "kubectl describe pod"
 abbr -a ka "kubectl apply -f"
 abbr -a ke "kubectl exec"
+abbr -a ki "kubectl iexec"
 
 ## docker
 abbr -a dc "docker-compose"
@@ -106,6 +107,9 @@ end
 
 ## brew
 set -g -x PATH $PATH /opt/homebrew/bin
+
+## krew
+set -gx PATH $PATH $HOME/.krew/bin
 
 ## fish
 set fish_theme agnoster
