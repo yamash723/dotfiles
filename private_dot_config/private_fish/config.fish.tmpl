@@ -115,6 +115,9 @@ set -gx PATH $PATH $HOME/.krew/bin
 set fish_theme agnoster
 set fish_plugins theme peco
 
+## deno
+set -g -x PATH $PATH ~/.deno/bin
+
 ## iterm
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
