@@ -58,81 +58,14 @@ zinit light olets/zsh-abbr
 {{ end }}
 
 # -----------------------------------------------------------------------------
-# abbreviations
-# -----------------------------------------------------------------------------
-export ABBR_QUIETER=1
-
-## GitHub
-abbr -S gj="cd (ghq root)/(ghq list | peco)"
-abbr -S ghg="ghq get"
-abbr -S ghget="ghg"
-abbr -S gho="code (ghq root)/(ghq list | peco)"
-abbr -S ghopen="gho"
-abbr -S ghr="cd (ghq root)"
-abbr -S ghroot="ghr"
-abbr -S ghb="gh browse"
-abbr -S ghbrowse="ghb"
-
-## Git
-abbr -S g="git"
-abbr -S ga="git add"
-abbr -S gs="git status"
-abbr -S gr="git restore"
-abbr -S gc="git commit -m"
-abbr -S gb="git branch -a --sort=-authordate | grep -v -e '->' -e '*' | perl -pe 's/^\h+//g' | perl -pe 's#^remotes/origin/##' | peco | xargs git switch"
-abbr -S gn="git switch -c"
-abbr -S gd="git diff"
-abbr -S gf="git fetch"
-abbr -S gpull="git pull"
-abbr -S gpush="git push"
-
-## chezmoi
-abbr -S ch="chezmoi"
-abbr -S chc="chezmoi cd"
-abbr -S cho="code (chezmoi source-path)"
-abbr -S chr="chezmoi re-add"
-abbr -S cha="chezmoi add"
-abbr -S chap="chezmoi apply"
-abbr -S chp="chezmoi_push"
-abbr -S chzsh="chezmoi edit ~/.zshrc && chezmoi apply ~/.zshrc && source ~/.zshrc"
-
-## asdf
-abbr -S ad="asdf"
-abbr -S adi="asdf install"
-abbr -S adl="asdf list"
-abbr -S adla="asdf list-all"
-abbr -S adg="asdf global"
-
-## k8s
-abbr -S k="kubectl"
-abbr -S kg="kubectl get"
-abbr -S kgp="kubectl get pods"
-abbr -S kgd="kubectl get deployment"
-abbr -S kgs="kubectl get service"
-abbr -S kd="kubectl describe"
-abbr -S kdp="kubectl describe pod"
-abbr -S ka="kubectl apply -f"
-abbr -S ke="kubectl exec"
-abbr -S ki="kubectl iexec"
-abbr -S kii="/Users/nappa/ghq/github.com/nappa/work/scripts/k8s_exec_selecter.mjs"
-
-## docker
-abbr -S --force dc="docker-compose"
-abbr -S dcu="docker-compose up"
-
-# terraform
-abbr -S tf="terraform"
-
-## dev
-abbr -S codere="code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/(ssh nappa-dev ghq list | peco)"
-
-# -----------------------------------------------------------------------------
-# Buisiness
+# Tools
 # -----------------------------------------------------------------------------
 
-{{ if eq .chezmoi.hostname "nappa-work" }}
-  source ~/.kube/kube-config/clustername-ps1/clustername-ps1.fish
-{{ end }}
+# Starship
+eval "$(starship init zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
 
 # -----------------------------------------------------------------------------
 # Function

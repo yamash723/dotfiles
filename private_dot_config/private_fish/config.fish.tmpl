@@ -125,17 +125,17 @@ set -g -x PATH $PATH ~/.deno/bin
 ## iterm
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
-## asdf
-{{ if eq .chezmoi.os "darwin" }}
-  source /opt/homebrew/opt/asdf/asdf.fish
-{{ else }}
-  source ~/.asdf/asdf.fish
-{{ end }}
+# ## asdf
+# {{ if eq .chezmoi.os "darwin" }}
+#   source /opt/homebrew/opt/asdf/asdf.fish
+# {{ else }}
+#   source ~/.asdf/asdf.fish
+# {{ end }}
 
 ## direnv
 eval (direnv hook fish)
 
-# Buisiness
+## Buisiness
 {{ if eq .chezmoi.hostname "nappa-work" }}
   source ~/.kube/kube-config/clustername-ps1/clustername-ps1.fish
 {{ end }}
