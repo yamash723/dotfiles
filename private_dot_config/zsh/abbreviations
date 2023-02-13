@@ -34,6 +34,7 @@ abbr -S cha='chezmoi add'
 abbr -S chap='chezmoi apply'
 abbr -S chp='chezmoi_push'
 abbr -S chzsh='chezmoi edit ~/.zshrc && chezmoi apply ~/.zshrc && source ~/.zshrc'
+abbr -S chabb='chezmoi edit ~/.config/zsh/abbreviations && chezmoi apply ~/.config/zsh/abbreviations && source ~/.config/zsh/abbreviations'
 
 ## asdf
 abbr -S ad='asdf'
@@ -63,4 +64,4 @@ abbr -S dcu='docker-compose up'
 abbr -S tf='terraform'
 
 ## dev
-abbr -S codere='code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/(ssh nappa-dev ghq list | peco)'
+abbr -S codere='code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/$(ssh nappa-dev ghq list | peco)'
