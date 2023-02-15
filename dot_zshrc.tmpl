@@ -67,6 +67,12 @@ eval "$(starship init zsh)"
 # direnv
 eval "$(direnv hook zsh)"
 
+# krew
+export PATH="${PATH}:${HOME}/.krew/bin"
+
+# asdf
+. $(brew --prefix asdf)/libexec/asdf.sh
+
 # -----------------------------------------------------------------------------
 # Function
 # -----------------------------------------------------------------------------
