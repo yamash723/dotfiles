@@ -56,6 +56,9 @@ abbr -S ke='kubectl exec'
 abbr -S ki='kubectl iexec'
 abbr -S kii='/Users/nappa/ghq/github.com/nappa/work/scripts/k8s_exec_selecter.mjs'
 
+## zellij
+abbr -S zl='FIG_NEW_SESSION=1 zellij'
+
 ## docker
 abbr -S --force dc='docker-compose'
 abbr -S dcu='docker-compose up'
