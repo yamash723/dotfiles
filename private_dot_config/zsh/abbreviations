@@ -11,6 +11,7 @@ abbr -S ghr='cd $(ghq root)'
 abbr -S ghroot='ghr'
 abbr -S ghb='gh browse'
 abbr -S ghbrowse='ghb'
+abbr -S ghpr='gh pr view -w'
 
 ## Git
 abbr -S g='git'
@@ -24,6 +25,7 @@ abbr -S gd='git diff'
 abbr -S gf='git fetch'
 abbr -S gpull='git pull'
 abbr -S gpush='git push'
+abbr -S groot='cd $(git rev-parse --show-superproject-working-tree --show-toplevel | head -1)'
 
 ## chezmoi
 abbr -S ch='chezmoi'
@@ -60,8 +62,8 @@ abbr -S kii='/Users/nappa/ghq/github.com/nappa/work/scripts/k8s_exec_selecter.mj
 abbr -S zl='FIG_NEW_SESSION=1 zellij'
 
 ## docker
-abbr -S --force dc='docker-compose'
-abbr -S dcu='docker-compose up'
+abbr -S --force dc='docker compose'
+abbr -S dcu='docker compose up'
 
 # terraform
 abbr -S tf='terraform'
