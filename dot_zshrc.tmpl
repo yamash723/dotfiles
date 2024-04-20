@@ -106,5 +106,9 @@ function chezmoi_push() {
 # Other
 # -----------------------------------------------------------------------------
 
+LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
+GIT_EXTERNAL_DIFF=difft git diff
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
