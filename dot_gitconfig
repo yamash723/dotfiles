@@ -5,3 +5,92 @@
 	default = current
 [core]
 	editor = vim
+	excludesfile = /Users/nappa/.config/git/global.gitignore
+
+
+[user]
+	name = Shuhei Yamashita
+	email = b.e7472@gmail.com
+
+[init]
+    defaultBranch = main                       # 初期ブランチ名
+
+[color]
+    ui = auto                                  # 色付き出力
+
+[column]
+    ui = auto                                  # カラム整形（一覧を見やすく）
+
+[core]
+    quotepath = false                          # 日本語などのパスをエスケープせず表示
+    excludesfile = ~/.config/git/global.gitignore # グローバル .gitignore の場所
+
+[branch]
+    sort = -committerdate                      # ブランチ一覧を最新更新順で表示
+
+[tag]
+    sort = version:refname                     # セマンティックバージョン順で表示
+
+[diff]
+    external = diffnav                         # 差分ツールをdiffnavに設定
+    algorithm = histogram                      # 差分アルゴリズム（編集に強い）
+    colorMoved = default                       # 行移動の色付け
+    mnemonicPrefix = true                      # 差分の接頭辞を分かりやすく
+    renames = true                             # リネーム検出を有効に
+    compactionHeuristic = true                 # 差分のまとまりを見やすく
+
+[merge]
+    conflictStyle = zdiff3                     # 競合時にベース付きの3分割表示
+
+[pull]
+    rebase = true                              # pull は rebase 前提に（履歴を直線化）
+
+[push]
+    default = simple                           # 現在ブランチのみ push（安全）
+    autoSetupRemote = true                     # 初回 push で upstream 自動設定
+    followTags = true                          # 関連タグを自動で一緒に push
+
+[fetch]
+    prune = true                               # 消えたリモートブランチを整理
+    pruneTags = true                           # 消えたリモートタグも整理
+    all = true                                 # すべてのリモートを取得（複数 remote を使う場合に便利）
+    # parallel = 8                             # 並列フェッチ（回線/CPU に応じ調整）
+
+[help]
+    autocorrect = prompt                       # コマンド誤タイプ時に提案
+
+[commit]
+    verbose = true                             # コミット時に差分を同時表示
+    # gpgsign = true                           # 署名を常時有効化（鍵設定済みなら）
+
+[rerere]
+    enabled = true                             # 過去の競合解決を学習
+    autoupdate = true                          # 再発時に自動適用
+
+[rebase]
+    autoSquash = true                          # fixup!/squash! を自動適用
+    autoStash = true                           # 未コミット変更を自動退避
+    updateRefs = true                          # 関連参照の更新（安全に履歴書き換え）
+
+[log]
+    showSignature = true                       # 署名状態をログに表示
+
+[alias]
+    # 既存
+    s = status                                 # status の短縮
+    co = commit                                # commit の短縮（手癖用）
+
+    # 追加おすすめ（日常効率化）
+    st = status -sb                            # 簡潔な status（ブランチ・追跡表示）
+    sw = switch                                # ブランチ切替の現行コマンド
+    lg = log --graph --decorate --oneline --all    # 見やすい履歴グラフ
+    last = log -1 --stat                       # 直近コミットの詳細
+    df = diff --word-diff=color                # 単語単位の差分
+    dfp = diff --staged                        # ステージ済みの差分のみ
+    undo = reset --soft HEAD~1                 # 直前コミットを取り消し（変更は保持）
+    wip = "!git add -A && git commit -m 'wip'" # 作業途中の退避コミット
+
+[submodule]
+    recurse = true                              # サブモジュール操作を再帰的に
+[wt]
+	basedir = .worktrees

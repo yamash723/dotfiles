@@ -1,13 +1,16 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
+# -----------------------------------------------------------------------------
+# Amazon Q pre block. Keep at the top of this file.
+# -----------------------------------------------------------------------------
 #
 # Executes commands at the start of an interactive session.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# -----------------------------------------------------------------------------
 
-# Source Prezto.
+# Source Prezto. (prompt theme)
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
@@ -45,17 +48,17 @@ zinit light olets/zsh-abbr
 # alias
 # -----------------------------------------------------------------------------
 
-{{ if eq .chezmoi.os "linux" }}
-  alias ll='exa -aahl --icons'
-  alias ls='exa --icons'
-  alias cat='batcat -pp'
-  alias less='batcat'
-{{ else }}
-  alias ll='exa -aahl --icons --git'
-  alias ls='exa --icons --git'
+  alias ll='eza -aahl --icons --git'
+  alias ls='eza --icons --git'
   alias cat='bat -pp'
   alias less='bat'
-{{ end }}
+
+# -----------------------------------------------------------------------------
+# Path
+# -----------------------------------------------------------------------------
+
+PATH="$HOME/.deno/bin:$PATH"
+LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
 
 # -----------------------------------------------------------------------------
 # Tools
@@ -70,31 +73,29 @@ eval "$(direnv hook zsh)"
 # krew
 export PATH="${PATH}:${HOME}/.krew/bin"
 
-# asdf
-. $(brew --prefix asdf)/libexec/asdf.sh
+# mise
+eval "$(mise activate zsh)"
+
+# aqua
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+# Global aqua config file
+export AQUA_GLOBAL_CONFIG="$(ghq root)/github.com/yamash723/macos/aqua.yaml"
 
 # z
 . /opt/homebrew/etc/profile.d/z.sh
 
+# carapase
+autoload -U compinit && compinit
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+# git-wt
+eval "$(git wt --init zsh)"
+
 # -----------------------------------------------------------------------------
 # Function
 # -----------------------------------------------------------------------------
-
-function peco-select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle clear-screen
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
 
 function chezmoi_push() {
   chezmoi git -- add -A
@@ -103,12 +104,15 @@ function chezmoi_push() {
 }
 
 # -----------------------------------------------------------------------------
-# Other
+# Amazon Q post block. Keep at the bottom of this file.
 # -----------------------------------------------------------------------------
 
-LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
-GIT_EXTERNAL_DIFF=difft git diff
+# おそらくfigからAmazonQに移行したときの名残
+[[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
+export PATH="$HOME/.local/bin:$PATH"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+# tobi/try
+eval "$(~/.local/try.rb init ~/src/tries)"
 
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
