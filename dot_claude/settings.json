@@ -1,0 +1,33 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "allow": [
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Edit(/Users/yamashitashuuhei/Documents/Obsidian/nappa-main/nappa-main/**)",
+      "Write(/Users/yamashitashuuhei/Documents/Obsidian/nappa-main/nappa-main/**)",
+      "mcp__claude_ai_Google_Calendar__gcal_list_events",
+      "mcp__pencil",
+      "Bash(bun:*)",
+      "Bash(node:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsx src/index.ts --help)",
+      "Bash(npx vitest:*)",
+      "Bash(chmod +x:*)",
+      "Bash(npx tsx:*)",
+      "Bash(curl:*)",
+      "Bash(1:*)",
+      "Bash(wc:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "everything-claude-code@everything-claude-code": true,
+    "obsidian@obsidian-skills": true,
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "effortLevel": "high",
+  "model": "sonnet"
+}
