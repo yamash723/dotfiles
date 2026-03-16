@@ -84,6 +84,7 @@ export AQUA_GLOBAL_CONFIG="$(ghq root)/github.com/yamash723/macos/aqua.yaml"
 # z
 . /opt/homebrew/etc/profile.d/z.sh
 
+<<<<<<< Updated upstream:dot_zshrc
 # carapase
 autoload -U compinit && compinit
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
@@ -92,6 +93,11 @@ source <(carapace _carapace)
 
 # git-wt
 eval "$(git wt --init zsh)"
+||||||| Stash base:dot_zshrc.tmpl
+=======
+# GNU grep
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:${PATH}"
+>>>>>>> Stashed changes:dot_zshrc.tmpl
 
 # -----------------------------------------------------------------------------
 # Function
@@ -107,9 +113,16 @@ function chezmoi_push() {
 # Amazon Q post block. Keep at the bottom of this file.
 # -----------------------------------------------------------------------------
 
+<<<<<<< Updated upstream:dot_zshrc
 # おそらくfigからAmazonQに移行したときの名残
 [[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
 export PATH="$HOME/.local/bin:$PATH"
+||||||| Stash base:dot_zshrc.tmpl
+LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
+GIT_EXTERNAL_DIFF=difft git diff
+=======
+LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
+>>>>>>> Stashed changes:dot_zshrc.tmpl
 
 # tobi/try
 eval "$(~/.local/try.rb init ~/src/tries)"
