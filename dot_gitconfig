@@ -32,7 +32,7 @@
     sort = version:refname                     # セマンティックバージョン順で表示
 
 [diff]
-    external = diffnav                         # 差分ツールをdiffnavに設定
+    # external = difft                           # 差分ツールをdifftに設定
     algorithm = histogram                      # 差分アルゴリズム（編集に強い）
     colorMoved = default                       # 行移動の色付け
     mnemonicPrefix = true                      # 差分の接頭辞を分かりやすく
@@ -92,5 +92,8 @@
 
 [submodule]
     recurse = true                              # サブモジュール操作を再帰的に
+
+[pager]
+    diff = diffnav
 [wt]
 	basedir = .worktrees

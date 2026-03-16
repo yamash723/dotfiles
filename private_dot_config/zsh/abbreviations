@@ -12,6 +12,9 @@ abbr -S ghroot='ghr'
 abbr -S ghb='gh browse'
 abbr -S ghbrowse='ghb'
 abbr -S ghpr='gh pr view -w'
+abbr -S ghw='gh pr checks --watch'
+abbr -S ghrl='gh run list'
+abbr -S ghrf='gh run rerun --failed'
 
 ## Git
 abbr -S g='git'
@@ -26,6 +29,7 @@ abbr -S gf='git fetch'
 abbr -S gpull='git pull'
 abbr -S gpush='git push'
 abbr -S groot='cd $(git rev-parse --show-superproject-working-tree --show-toplevel | head -1)'
+abbr -S gw='git wt'
 abbr -S lg='lazygit'
 
 ## chezmoi
@@ -71,3 +75,7 @@ abbr -S tf='terraform'
 
 ## dev
 abbr -S codere='code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/$(ssh nappa-dev ghq list | peco)'
+
+## Utils
+abbr -S obs='cursor /Users/nappa/Documents/Obsidian/nappa/'
+abbr -S lnrepo='ghq list | peco | xargs -I{} sh -c '\''src="$(ghq root)/{}"; ln -s "$src" "$(basename "{}")"'\'''
