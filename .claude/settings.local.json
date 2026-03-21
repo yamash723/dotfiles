@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(top -l 1 -n 20 -o cpu | head -30)",
+      "Bash(ps aux:*)"
+    ]
+  }
+}
