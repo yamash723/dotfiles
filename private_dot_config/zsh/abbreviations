@@ -79,3 +79,4 @@ abbr -S codere='code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/$(ssh nappa-
 ## Utils
 abbr -S obs='cursor /Users/nappa/Documents/Obsidian/nappa/'
 abbr -S lnrepo='ghq list | peco | xargs -I{} sh -c '\''src="$(ghq root)/{}"; ln -s "$src" "$(basename "{}")"'\'''
+abbr -S untisleeep='caffeinate -d -t 7200'
