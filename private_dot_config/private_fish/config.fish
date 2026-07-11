@@ -1,0 +1,135 @@
+
+if status is-interactive
+end
+
+# -----------------------------------------------------------------------------
+# alias
+# -----------------------------------------------------------------------------
+
+
+  alias ll='exa -aahl --icons --git'
+  alias ls='exa --icons --git'
+  alias cat='bat -pp'
+  alias less='bat'
+
+
+# -----------------------------------------------------------------------------
+# abbreviations
+# -----------------------------------------------------------------------------
+
+## GitHub
+abbr -a gh "cd (ghq root)/(ghq list | peco)"
+abbr -a ghg "ghq get"
+abbr -a ghget "ghg"
+abbr -a gho "code (ghq root)/(ghq list | peco)"
+abbr -a ghopen "gho"
+abbr -a ghr "cd (ghq root)"
+abbr -a ghroot "ghr"
+abbr -a ghb "gh browse"
+abbr -a ghbrowse "ghb"
+
+## Git
+abbr -a g "git"
+abbr -a ga "git add"
+abbr -a gs "git status"
+abbr -a gr "git restore"
+abbr -a gc "git commit -m"
+abbr -a gb "git branch -a --sort=-authordate | grep -v -e '->' -e '*' | perl -pe 's/^\h+//g' | perl -pe 's#^remotes/origin/##' | peco | xargs git switch"
+abbr -a gn "git switch -c"
+abbr -a gd "git diff"
+abbr -a gf "git fetch"
+abbr -a gpull "git pull"
+abbr -a gpush "git push"
+
+## chezmoi
+abbr -a ch "chezmoi"
+abbr -a chc "chezmoi cd"
+abbr -a cho "code (chezmoi source-path)"
+abbr -a chr "chezmoi re-add"
+abbr -a cha "chezmoi add"
+abbr -a chap "chezmoi apply"
+abbr -a chp "chezmoi_push"
+abbr -a chfish "chezmoi edit ~/.config/fish/config.fish && chezmoi apply ~/.config/fish/config.fish && source ~/.config/fish/config.fish"
+
+## asdf
+abbr -a ad "asdf"
+abbr -a adi "asdf install"
+abbr -a adl "asdf list"
+abbr -a adla "asdf list-all"
+abbr -a adg "asdf global"
+
+## k8s
+abbr -a k "kubectl"
+abbr -a kg "kubectl get"
+abbr -a kgp "kubectl get pods"
+abbr -a kgs "kubectl get deployment"
+abbr -a kgs "kubectl get service"
+abbr -a kd "kubectl describe"
+abbr -a kdp "kubectl describe pod"
+abbr -a ka "kubectl apply -f"
+abbr -a ke "kubectl exec"
+abbr -a ki "kubectl iexec"
+abbr -a kii "/Users/nappa/ghq/github.com/nappa/work/scripts/k8s_exec_selecter.mjs"
+
+## docker
+abbr -a dc "docker-compose"
+abbr -a dcu "docker-compose up"
+
+# terraform
+abbr -a tf "terraform"
+
+## dev
+abbr -a dev-lapras "code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/github.com/lapras-inc/lapras"
+abbr -a dev-scouty "code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/github.com/lapras-inc/scouty"
+abbr -a codere "code --remote ssh-remote+nappa-dev /home/ubuntu/ghq/(ssh nappa-dev ghq list | peco)"
+
+# -----------------------------------------------------------------------------
+# Function
+# -----------------------------------------------------------------------------
+
+function fish_user_key_bindings
+  bind \cr peco_select_history # Bind for peco history to Ctrl+r
+end
+
+function chezmoi_push
+  chezmoi git -- add -A
+  chezmoi git -- commit -m 'update'
+  chezmoi git -- push
+end
+
+# -----------------------------------------------------------------------------
+# Other
+# -----------------------------------------------------------------------------
+
+## bin
+set -g -x PATH $PATH $HOME/.local/bin
+
+## brew
+set -g -x PATH $PATH /opt/homebrew/bin
+
+## krew
+set -gx PATH $PATH $HOME/.krew/bin
+
+## fish
+set fish_theme agnoster
+set fish_plugins theme peco
+
+## deno
+set -g -x PATH $PATH ~/.deno/bin
+
+## iterm
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+# ## asdf
+# 
+#   source /opt/homebrew/opt/asdf/asdf.fish
+# 
+
+## direnv
+eval (direnv hook fish)
+
+## Buisiness
+
+
+
+source ~/.safe-chain/scripts/init-fish.fish # Safe-chain Fish initialization script

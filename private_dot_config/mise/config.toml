@@ -1,0 +1,8 @@
+[tools]
+go = "latest"
+helm = "3.19.2"
+kubectl = "1.31"
+kustomize = "5.7.1"
+node = "20"
+python = "3.10.13"
+shellcheck = "latest"

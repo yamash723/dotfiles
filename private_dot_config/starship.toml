@@ -1,0 +1,40 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character] # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# style = "bold blue"
+# symbol = "🅰 "
+
+# AWS module
+[aws]
+format = '[$symbol $profile ]($style)'
+force_display = true  # SSO/aws login では認証情報を env 検出できず既定で隠れるため強制表示
+symbol = "💭"
+style = "bold fg:#ffcb6b"
+
+# [aws.profile_aliases]
+# Enterprise_Naming_Scheme-voidstars = 'void**'
+
+[helm]
+format = "via [⎈ $version](bold white) "
+
+[custom.cluster-stg]
+command = """ cat "$KUBECONFIG" | tr -d "\n" | perl -ple 's/^.+--cluster-name[\\s-"]+(\\S*).+$/\\1/g' """
+when = """ [[ $(basename "$KUBECONFIG") = *stg ]] """
+style = "bold green"
+
+[custom.cluster-prd]
+command = """ cat "$KUBECONFIG" | tr -d "\n" | perl -ple 's/^.+--cluster-name[\\s-"]+(\\S*).+$/\\1/g' """
+when = """ [[ $(basename "$KUBECONFIG") = *prd ]] """
+style = "bold red"
+

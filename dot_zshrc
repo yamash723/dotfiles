@@ -1,0 +1,122 @@
+# homebrewで管理したくないpackageたち
+export HOMEBREW_FORBIDDEN_FORMULAE="node python python3 pip npm pnpm yarn claude"
+
+# -----------------------------------------------------------------------------
+# zimfw
+# -----------------------------------------------------------------------------
+bindkey -e
+
+ZIM_HOME=~/.zim
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+    https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+source ${ZIM_HOME}/init.zsh
+
+# -----------------------------------------------------------------------------
+# alias
+# -----------------------------------------------------------------------------
+
+  alias ai='cursor-agent'
+  alias ll='eza -aahl --icons --git'
+  alias ls='eza --icons --git'
+  alias cat='bat -pp'
+  alias less='bat'
+  alias tree='nocorrect tree'
+  alias tee='nocorrect tee'
+
+# -----------------------------------------------------------------------------
+# Path
+# -----------------------------------------------------------------------------
+
+PATH="$HOME/.deno/bin:$PATH"
+LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
+
+# -----------------------------------------------------------------------------
+# Tools
+# -----------------------------------------------------------------------------
+
+# Starship
+eval "$(starship init zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# krew
+export PATH="${PATH}:${HOME}/.krew/bin"
+
+# mise
+eval "$(mise activate zsh)"
+
+# aqua
+export AQUA_GLOBAL_CONFIG=~/.config/aqua/aqua.yaml
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+
+# zoxide (z の代替)
+eval "$(zoxide init zsh)"
+source <(fzf --zsh)
+
+# GNU Tools
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:${PATH}"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+
+# Ctrl+Q でディレクトリをインタラクティブに移動
+stty -ixon
+fzf-zoxide-cd() {
+  local dir
+  dir=$(zoxide query --list | fzf) && cd "$dir"
+}
+zle -N fzf-zoxide-cd
+bindkey '^Q' fzf-zoxide-cd
+
+# awsp
+alias awsp="source _awsp"
+
+# atuin
+eval "$(atuin init zsh --disable-up-arrow)"
+
+# carapace
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+# git wt
+eval "$(git wt --init zsh)"
+
+# try
+eval "$(/Users/nappa/.local/try.rb init ~/src/tries)"
+
+# -----------------------------------------------------------------------------
+# Function
+# -----------------------------------------------------------------------------
+
+function chezmoi_push() {
+  chezmoi git -- add -A
+  chezmoi git -- commit -m 'update'
+  chezmoi git -- push
+}
+
+# -----------------------------------------------------------------------------
+# Other
+# -----------------------------------------------------------------------------
+
+# Amazon Q post block. Keep at the bottom of this file.
+# fig-export は不要（Prezto/zsh-abbr を二重ロードするため無効化）
+# [[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
+export PATH="$HOME/.local/bin:$PATH"
+
+# k8sアプデとかで使うログコマンド
+if [ -f /Users/nappa/log_command.bash ]; then
+    . /Users/nappa/log_command.bash
+fi
+
+# セキュリティ
+source ~/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script
+
+# pnpm
+export PNPM_HOME="/Users/nappa/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
